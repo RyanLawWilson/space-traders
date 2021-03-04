@@ -1,4 +1,5 @@
 import './App.css';
+import UserNav from './Components/UserNav';
 
 function App() {
 
@@ -6,10 +7,10 @@ function App() {
 
 
 
-  
+
   return (
     <div className="App">
-      
+      <UserNav />
     </div>
   );
 }
