@@ -1,0 +1,84 @@
+.App { 
+    background-color: var(--dark);
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 150%;
+    width: 100%;
+}
+
+* {
+    color: var(--light);
+}
+
+.user-nav--container {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.user-nav {
+    display: flex;
+    flex-wrap: wrap;
+    border-bottom: 2px solid white;
+    padding: 5px 20px 10px 20px;
+    align-items: center;
+    
+}
+
+.user-nav--logo {
+    display: inline-block;
+    font-size: 1.75em;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+.user-nav--buttons {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+} 
+
+.user-nav--buttons button {
+    display: block;
+    margin: 0 5px;
+    height: fit-content;
+} 
+
+.user-nav--content {
+    display: flex;
+    flex-basis: auto;
+    flex-grow: 1;
+    flex-wrap: wrap;
+} 
+
+.user-nav--user-info--container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    line-height: 1.5em;
+}
+
+.user-nav--username, .user-nav--money {
+    display: block;
+    width: 100%;
+    font-size: 1.25em;
+    color: crimson;
+    font-weight: bold;
+}
+
+.user-nav--money {
+    color: gold;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: 100;
+}
+
+
+
+
+
+.login-modal .modal-title {
+    font-size: 2em;
+}
