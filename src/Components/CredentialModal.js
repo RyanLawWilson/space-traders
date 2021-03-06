@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import axios from 'axios';
 
-const CredentialModal = ({ setUserData }) => {
+const CredentialModal = ({ setUserData, setToken }) => {
 
     // Bootstrap state to open/close modal
     const [show, setShow] = useState(false);
@@ -23,6 +23,7 @@ const CredentialModal = ({ setUserData }) => {
     const handleSubmit = () => {
         setShow(false);
         //console.log("Username: " + username + " | Token: " + token);
+        setToken(tokenText);
         getUserInfo(userNameText, tokenText);
     }
 

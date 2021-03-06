@@ -3,7 +3,7 @@ import React from 'react';
 import CredentialModal from './CredentialModal';
 // import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
 
-const UserNav = ({ setUserData, userData }) => {
+const UserNav = ({ setUserData, userData, setToken }) => {
 
 
     return (
@@ -13,7 +13,7 @@ const UserNav = ({ setUserData, userData }) => {
                 <div className="user-nav--content">
                     <div className="user-nav--buttons mr-auto">
                         <button className="btn btn-primary" href="#">Get User Info</button>
-                        <CredentialModal setUserData={setUserData} />
+                        <CredentialModal setUserData={setUserData} setToken={setToken} />
                         <button className="btn btn-primary" href="#">Option 3</button>
                     </div>
                     <div className="user-nav--user-info--container">
