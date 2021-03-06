@@ -6,6 +6,7 @@ import axios from 'axios';
 
 const CredentialModal = ({ setUserData }) => {
 
+    // Bootstrap state to open/close modal
     const [show, setShow] = useState(false);
     const [userNameText, setUserNameText] = useState("");
     const [tokenText, setTokenText] = useState("");
@@ -21,16 +22,11 @@ const CredentialModal = ({ setUserData }) => {
 
     const handleSubmit = () => {
         setShow(false);
-        console.log("testing Submit");
-
-        var username = document.getElementById("username-text").value;
-        var token = document.getElementById("token-text").value;
-
-        console.log("Username: " + username + " | Token: " + token);
-
-        getUserInfo(null, userNameText, tokenText);
+        //console.log("Username: " + username + " | Token: " + token);
+        getUserInfo(userNameText, tokenText);
     }
 
+    // If player has local data, use the data and update UserData state.
     const handleLoginUsingExistingData = () => {
         var data = JSON.parse(localStorage.getItem("ST_UserData"));
         setUserData(data);
@@ -44,7 +40,8 @@ const CredentialModal = ({ setUserData }) => {
         setTokenText(e.target.value);
     }
 
-    function getUserInfo(fill, playerUsername, token) {
+    // Contact spacetraders API if there is no local player data.  Save player data in local storage
+    function getUserInfo(playerUsername, token) {
         console.log(`Player Username: ${playerUsername}`);
         console.log("Player Token: " + token);
     
@@ -91,7 +88,7 @@ const CredentialModal = ({ setUserData }) => {
                     <label className="d-block text-dark">Username: </label>
                     <input type="text" id="username-text" onChange={userNameHandler} value={userNameText} placeholder="Username..." className="mb-2 d-block w-100 text-dark" />
                     <label className="d-block text-dark">Token: </label>
-                    <input type="text" id="token-text" onChange={tokenHandler} value={tokenText} placeholder="Token..." className="mb-2 d-block w-100 text-dark" />
+                    <input type="password" id="token-text" onChange={tokenHandler} value={tokenText} placeholder="Token..." className="mb-2 d-block w-100 text-dark" />
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
