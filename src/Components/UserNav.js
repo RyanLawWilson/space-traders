@@ -12,9 +12,9 @@ const UserNav = ({ setUserData, userData, setToken }) => {
                 <div className="user-nav--logo">Space Traders</div>
                 <div className="user-nav--content">
                     <div className="user-nav--buttons mr-auto">
-                        <button className="btn btn-primary" href="#">Get User Info</button>
+                        {/* <button className="btn btn-primary" href="#">Get User Info</button> */}
                         <CredentialModal setUserData={setUserData} setToken={setToken} />
-                        <button className="btn btn-primary" href="#">Option 3</button>
+                        {/* <button className="btn btn-primary" href="#">Option 3</button> */}
                     </div>
                     <div className="user-nav--user-info--container">
                         {console.log(userData)}

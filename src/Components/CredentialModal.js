@@ -28,10 +28,10 @@ const CredentialModal = ({ setUserData, setToken }) => {
     }
 
     // If player has local data, use the data and update UserData state.
-    const handleLoginUsingExistingData = () => {
-        var data = JSON.parse(localStorage.getItem("ST_UserData"));
-        setUserData(data);
-    }
+    // const handleLoginUsingExistingData = () => {
+    //     var data = JSON.parse(localStorage.getItem("ST_UserData"));
+    //     setUserData(data);
+    // }
 
     const userNameHandler = (e) => {
         setUserNameText(e.target.value);
@@ -75,11 +75,11 @@ const CredentialModal = ({ setUserData, setToken }) => {
                 </Button>
             }
 
-            {localStorage.getItem("ST_UserData") !== null &&
+            {/* {localStorage.getItem("ST_UserData") !== null &&
                 <Button variant="primary" onClick={handleLoginUsingExistingData}>
                     Log In (local)
                 </Button>
-            }
+            } */}
             
             <Modal show={show} onHide={handleClose} className="login-modal">
                 <Modal.Header closeButton>
