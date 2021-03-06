@@ -43,8 +43,8 @@ const CredentialModal = ({ setUserData, setToken }) => {
 
     // Contact spacetraders API if there is no local player data.  Save player data in local storage
     function getUserInfo(playerUsername, token) {
-        console.log(`Player Username: ${playerUsername}`);
-        console.log("Player Token: " + token);
+        // console.log(`Player Username: ${playerUsername}`);
+        // console.log("Player Token: " + token);
     
         if (localStorage.getItem("ST_UserData") === null) {
           axios({
@@ -59,7 +59,7 @@ const CredentialModal = ({ setUserData, setToken }) => {
             // Get response from the API then save it to local storage to reduce requests in the future.
             // Object properties: username, credits, ships, loans
             localStorage.setItem("ST_UserData", JSON.stringify(response.data.user));
-            console.log(response.data.user);
+            //console.log(response.data.user);
             setUserData(response.data.user);
           }).catch((error) => {
             console.log("FAILURE\n" + error);
@@ -69,11 +69,9 @@ const CredentialModal = ({ setUserData, setToken }) => {
 
     return (
         <>
-            {localStorage.getItem("ST_UserData") === null &&
-                <Button variant="primary" onClick={handleShow}>
-                    Log In (no local)
-                </Button>
-            }
+            <Button variant="primary" onClick={handleShow}>
+                Log In
+            </Button>
 
             {/* {localStorage.getItem("ST_UserData") !== null &&
                 <Button variant="primary" onClick={handleLoginUsingExistingData}>

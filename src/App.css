@@ -7,9 +7,9 @@
     width: 100%;
 }
 
-* {
+/* * {
     color: var(--light);
-}
+} */
 
 .user-nav--container {
     position: fixed;
@@ -33,6 +33,7 @@
     font-size: 1.75em;
     font-weight: bold;
     margin-right: 20px;
+    color: white;
 }
 
 .user-nav--buttons {
@@ -81,4 +82,28 @@
 
 .login-modal .modal-title {
     font-size: 2em;
+}
+
+
+
+
+
+.user-nav--logoff-btn-icon {
+    position: absolute;
+    left: -5px;
+    top: 5px;
+    cursor: pointer;
+    color: white;
+    transition: 0.2s;
+}
+
+.user-nav--logoff-btn-icon:hover {
+    transform: rotate(90deg) scale(1.2);
+    color: red;
+}
+
+.user-nav--logoff-btn-icon:active {
+    transform: rotate(90deg) scale(0.8);
+    color: crimson;
+    opacity: 0.8;
 }

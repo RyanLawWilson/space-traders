@@ -1,6 +1,8 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import CredentialModal from './CredentialModal';
+import { faTimes } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
 
 const UserNav = ({ setUserData, userData, setToken, token }) => {
@@ -12,23 +14,26 @@ const UserNav = ({ setUserData, userData, setToken, token }) => {
             <div className="position-relative">
                 <strong className="col-12 user-nav--username">{userData.username}</strong>
                 <strong className="col-12 user-nav--money">$1,000</strong>
-                
+                <FontAwesomeIcon icon={faTimes} className="user-nav--logoff-btn-icon" />
             </div>
         );
     }
 
     // Render Log in Button if there is no local storage
     function LoginButton() {
+        console.log("Rendering Login button");
         return(
             <CredentialModal setUserData={setUserData} setToken={setToken} />
         );
     }
 
     var userInfoOrLoginButton;
-    if (token === "") {
+    if (userData === "") {
+        console.log("No Token");
         userInfoOrLoginButton = LoginButton();
     }
     else {
+        console.log("There is a token");
         userInfoOrLoginButton = UserInfo();
     }
 
