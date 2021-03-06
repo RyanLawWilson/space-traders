@@ -1,12 +1,14 @@
 import './App.css';
 import UserNav from './Components/UserNav';
 import { useState, useEffect } from 'react';
+import LoansDashboard from './Components/LoansDashboard';
+import { Container } from 'react-bootstrap';
 
 function App() {
 
   //const[userCredentials, setUserCredentials] = useState({});
-  const[userData, setUserData] = useState({});
-  const[token, setToken] = useState("");
+  const [userData, setUserData] = useState({});
+  const [token, setToken] = useState("");
 
   useEffect(() => {
     if (localStorage.getItem("ST_UserData") !== null) {
@@ -24,6 +26,9 @@ function App() {
   return (
     <div className="App">
       <UserNav setUserData={setUserData} userData={userData} setToken={setToken} token={token} />
+      <Container>
+        <LoansDashboard />
+      </Container>
     </div>
   );
 }

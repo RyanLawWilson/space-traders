@@ -5,6 +5,7 @@
     left: 0;
     height: 150%;
     width: 100%;
+    padding-top: 75px;
 }
 
 /* * {
@@ -17,6 +18,7 @@
     top: 0;
     right: 0;
     z-index: 1000;
+    background-color: var(--dark);
 }
 
 .user-nav {
