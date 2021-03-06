@@ -3,8 +3,33 @@ import React from 'react';
 import CredentialModal from './CredentialModal';
 // import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
 
-const UserNav = ({ setUserData, userData, setToken }) => {
+const UserNav = ({ setUserData, userData, setToken, token }) => {
 
+
+    // Render User info if there is a valid token
+    function UserInfo() {
+        return(
+            <div>
+                <strong className="col-12 user-nav--username">{userData.username}</strong>
+                <strong className="col-12 user-nav--money">$1,000</strong>
+            </div>
+        );
+    }
+
+    // Render Log in Button if there is no local storage
+    function LoginButton() {
+        return(
+            <CredentialModal setUserData={setUserData} setToken={setToken} />
+        );
+    }
+
+    var userInfoOrLoginButton;
+    if (token === "") {
+        userInfoOrLoginButton = LoginButton();
+    }
+    else {
+        userInfoOrLoginButton = UserInfo();
+    }
 
     return (
         <div className="user-nav--container">
@@ -13,13 +38,11 @@ const UserNav = ({ setUserData, userData, setToken }) => {
                 <div className="user-nav--content">
                     <div className="user-nav--buttons mr-auto">
                         {/* <button className="btn btn-primary" href="#">Get User Info</button> */}
-                        <CredentialModal setUserData={setUserData} setToken={setToken} />
+                        
                         {/* <button className="btn btn-primary" href="#">Option 3</button> */}
                     </div>
                     <div className="user-nav--user-info--container">
-                        {console.log(userData)}
-                        <strong className="col-12 user-nav--username">{userData.username}</strong>
-                        <strong className="col-12 user-nav--money">$1,000</strong>
+                        {userInfoOrLoginButton}
                     </div>
                 </div>
             </div>

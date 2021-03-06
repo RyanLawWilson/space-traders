@@ -22,7 +22,7 @@ function App() {
 
   return (
     <div className="App">
-      <UserNav setUserData={setUserData} userData={userData} setToken={setToken} />
+      <UserNav setUserData={setUserData} userData={userData} setToken={setToken} token={token} />
     </div>
   );
 }
