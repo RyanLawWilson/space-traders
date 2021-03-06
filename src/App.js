@@ -13,6 +13,7 @@ function App() {
       console.log("Initial Load: There is data in local storage");
       var data = JSON.parse(localStorage.getItem("ST_UserData"));
       setUserData(data);
+      setToken(localStorage.getItem("ST_token"));
     } else {
       console.log("Initial Load: There is no data in local storage");
       //setUserData({});

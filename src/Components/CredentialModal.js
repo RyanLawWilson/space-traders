@@ -24,6 +24,7 @@ const CredentialModal = ({ setUserData, setToken }) => {
         setShow(false);
         //console.log("Username: " + username + " | Token: " + token);
         setToken(tokenText);
+        localStorage.setItem("ST_token", tokenText);
         getUserInfo(userNameText, tokenText);
     }
 
