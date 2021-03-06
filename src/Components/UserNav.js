@@ -12,7 +12,7 @@ const UserNav = ({ setUserData, userData, setToken, token }) => {
         return(
             <div className="position-relative">
                 <strong className="col-12 user-nav--username">{userData.username}</strong>
-                <strong className="col-12 user-nav--money">$1,000</strong>
+                <strong className="col-12 user-nav--money">${userData.credits}</strong>
                 <LogoutButton setUserData={setUserData} setToken={setToken} />
             </div>
         );
@@ -55,9 +55,8 @@ const UserNav = ({ setUserData, userData, setToken, token }) => {
                 <div className="user-nav--logo">Space Traders</div>
                 <div className="user-nav--content">
                     <div className="user-nav--buttons mr-auto">
-                        {/* <button className="btn btn-primary" href="#">Get User Info</button> */}
+                        <button className="btn btn-warning" href="#">Loans</button>
                         
-                        {/* <button className="btn btn-primary" href="#">Option 3</button> */}
                     </div>
                     <div className="user-nav--user-info--container">
                         {userInfoOrLoginButton}
