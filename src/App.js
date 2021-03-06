@@ -27,7 +27,7 @@ function App() {
     <div className="App">
       <UserNav setUserData={setUserData} userData={userData} setToken={setToken} token={token} />
       <Container>
-        <LoansDashboard />
+        <LoansDashboard token={token} />
       </Container>
     </div>
   );

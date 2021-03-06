@@ -1,7 +1,16 @@
 import axios from 'axios';
-import React from 'react';
+import React, { useState } from 'react';
+import { useEffect } from 'react';
 
-const LoansDashboard = () => {
+const LoansDashboard = ({ token }) => {
+
+    useEffect(() => {
+        //getAvailableLoans(token);
+    }, [token]);
+
+
+    const[availableLoans, setAvailableLoans] = useState([]);
+
 
 
     function getAvailableLoans(token) {
@@ -11,7 +20,8 @@ const LoansDashboard = () => {
             responseType: 'json',
         }).then((response) => {
             console.log("Success!");
-            console.log(response);
+            console.log(response.data.loans);
+            setAvailableLoans(response.data.loans);
         }).catch((err) => {
             console.log("Failure");
             console.log(err);
