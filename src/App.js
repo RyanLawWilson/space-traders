@@ -15,7 +15,7 @@ function App() {
       setUserData(data);
     } else {
       console.log("Initial Load: There is no data in local storage");
-      setUserData({ username: "Not Logged In" });
+      //setUserData({});
     }
   }, []);
 

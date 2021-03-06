@@ -13,7 +13,7 @@ const UserNav = ({ setUserData, userData, setToken, token }) => {
             <div className="position-relative">
                 <strong className="col-12 user-nav--username">{userData.username}</strong>
                 <strong className="col-12 user-nav--money">$1,000</strong>
-                <LogoutButton />
+                <LogoutButton setUserData={setUserData} setToken={setToken} />
             </div>
         );
     }
@@ -26,13 +26,26 @@ const UserNav = ({ setUserData, userData, setToken, token }) => {
         );
     }
 
+
+    // Helper method to test if object is empty.
+    function isEmpty(obj) {
+        for (var prop in obj) {
+            if (obj.hasOwnProperty(prop)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+
     var userInfoOrLoginButton;
-    if (userData === "") {
-        console.log("No Token");
+    if (isEmpty(userData)) {
+        console.log("No Data");
         userInfoOrLoginButton = LoginButton();
     }
     else {
-        console.log("There is a token");
+        console.log("There is player data");
         userInfoOrLoginButton = UserInfo();
     }
 
