@@ -9,9 +9,10 @@ const UserNav = ({ setUserData, userData, setToken, token }) => {
     // Render User info if there is a valid token
     function UserInfo() {
         return(
-            <div>
+            <div className="position-relative">
                 <strong className="col-12 user-nav--username">{userData.username}</strong>
                 <strong className="col-12 user-nav--money">$1,000</strong>
+                
             </div>
         );
     }
