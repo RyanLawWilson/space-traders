@@ -46,27 +46,27 @@ const CredentialModal = ({ setUserData, setToken }) => {
     function getUserInfo(playerUsername, token) {
         // console.log(`Player Username: ${playerUsername}`);
         // console.log("Player Token: " + token);
-    
+
         if (localStorage.getItem("ST_UserData") === null) {
-          axios({
-            method: 'get',
-            url: `https://api.spacetraders.io/users/${playerUsername}?token=${token}`,
-            responseType: 'json',
-            // auth: {
-            //   username: playerUsername,
-            //   token: token
-            // }
-          }).then((response) => {
-            // Get response from the API then save it to local storage to reduce requests in the future.
-            // Object properties: username, credits, ships, loans
-            localStorage.setItem("ST_UserData", JSON.stringify(response.data.user));
-            //console.log(response.data.user);
-            setUserData(response.data.user);
-          }).catch((error) => {
-            console.log("FAILURE\n" + error);
-          });
+            axios({
+                method: 'get',
+                url: `https://api.spacetraders.io/users/${playerUsername}?token=${token}`,
+                responseType: 'json',
+                // auth: {
+                //   username: playerUsername,
+                //   token: token
+                // }
+            }).then((response) => {
+                // Get response from the API then save it to local storage to reduce requests in the future.
+                // Object properties: username, credits, ships, loans
+                localStorage.setItem("ST_UserData", JSON.stringify(response.data.user));
+                //console.log(response.data.user);
+                setUserData(response.data.user);
+            }).catch((error) => {
+                console.log("FAILURE\n" + error);
+            });
         }
-      }
+    }
 
     return (
         <>
@@ -79,7 +79,7 @@ const CredentialModal = ({ setUserData, setToken }) => {
                     Log In (local)
                 </Button>
             } */}
-            
+
             <Modal show={show} onHide={handleClose} className="login-modal">
                 <Modal.Header closeButton>
                     <Modal.Title className="text-dark">Enter your Username and Token to log in</Modal.Title>
