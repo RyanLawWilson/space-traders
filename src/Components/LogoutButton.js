@@ -45,7 +45,7 @@ const LogoutButton = ({ setUserData, setToken }) => {
 
     return (
         <>
-            <FontAwesomeIcon icon={faTimes} className="user-nav--logoff-btn-icon" onClick={doNotShow ? handleLogout : handleShow} />
+            <FontAwesomeIcon icon={faTimes} className="user-nav--logoff-btn-icon" onClick={doNotShow ? handleLogout : handleShow} title="Log out?" />
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
