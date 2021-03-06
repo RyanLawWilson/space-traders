@@ -107,3 +107,26 @@
     color: crimson;
     opacity: 0.8;
 }
+
+
+
+
+
+
+.user-nav--time-since-update {
+    position: absolute;
+    left: -25px;
+    bottom: 0;
+    background-color: inherit;
+    border: none;
+    cursor: context-menu !important;
+    padding: 0;
+}
+
+.user-nav--time-since-update.btn-secondary:not(:disabled):not(.disabled):active,
+.user-nav--time-since-update.btn-secondary:focus,
+.user-nav--time-since-update.btn-secondary:hover {
+    background-color: inherit;
+    border: none;
+    box-shadow: none;
+}

@@ -2,6 +2,7 @@
 import React from 'react';
 import CredentialModal from './CredentialModal';
 import LogoutButton from './LogoutButton';
+import TimeSinceUpdate from './TimeSinceUpdate';
 // import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
 
 const UserNav = ({ setUserData, userData, setToken, token }) => {
@@ -14,6 +15,7 @@ const UserNav = ({ setUserData, userData, setToken, token }) => {
                 <strong className="col-12 user-nav--username">{userData.username}</strong>
                 <strong className="col-12 user-nav--money">${userData.credits}</strong>
                 <LogoutButton setUserData={setUserData} setToken={setToken} />
+                <TimeSinceUpdate />
             </div>
         );
     }
