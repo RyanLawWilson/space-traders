@@ -132,3 +132,14 @@
     border: none;
     box-shadow: none;
 }
+
+
+
+.loans-dashboard {
+    padding: 10px;
+}
+
+.loans-dashboard--loan {
+    margin: 3px 5px;
+    padding: 8px 13px;
+}
