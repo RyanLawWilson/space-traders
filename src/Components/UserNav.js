@@ -5,7 +5,20 @@ import LogoutButton from './LogoutButton';
 import TimeSinceUpdate from './TimeSinceUpdate';
 // import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
 
-const UserNav = ({ setUserData, userData, setToken, token }) => {
+const UserNav = ({ setUserData, userData, setToken, token, setPanel }) => {
+
+
+
+    const panelChangeHandler = (e) => {
+        console.log(e.target);
+        setPanel(e.target.textContent);
+    }
+
+
+
+
+
+
 
 
     // Render User info if there is a valid token
@@ -43,11 +56,9 @@ const UserNav = ({ setUserData, userData, setToken, token }) => {
 
     var userInfoOrLoginButton;
     if (isEmpty(userData)) {
-        console.log("No Data");
         userInfoOrLoginButton = LoginButton();
     }
     else {
-        console.log("There is player data");
         userInfoOrLoginButton = UserInfo();
     }
 
@@ -57,8 +68,8 @@ const UserNav = ({ setUserData, userData, setToken, token }) => {
                 <div className="user-nav--logo">Space Traders</div>
                 <div className="user-nav--content">
                     <div className="user-nav--buttons mr-auto">
-                        <button className="btn btn-warning" href="#">Loans</button>
-                        
+                        <button className="btn btn-warning" href="#" onClick={panelChangeHandler}>Loans</button>
+                        <button className="btn btn-success" href="#" onClick={panelChangeHandler}>Ships</button>
                     </div>
                     <div className="user-nav--user-info--container">
                         {userInfoOrLoginButton}

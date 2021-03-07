@@ -9,6 +9,9 @@ function App() {
   //const[userCredentials, setUserCredentials] = useState({});
   const [userData, setUserData] = useState({});
   const [token, setToken] = useState("");
+  // A panel is the component being displayed in the main screen area.
+  // Available panels: Loans, Ships
+  const [panel, setPanel] = useState("Ships");
 
   useEffect(() => {
     if (localStorage.getItem("ST_UserData") !== null) {
@@ -22,12 +25,21 @@ function App() {
     }
   }, []);
 
+  // Show different panels based on what is clicked in the navbar
+  function determineDisplayPanel() {
+    switch(panel) {
+      case "Loans":
+        return(<LoansDashboard token={token} />);
+      default:
+        return(<div>TEMP</div>); // Show the ships panel by default
+    }
+  }
 
   return (
     <div className="App">
-      <UserNav setUserData={setUserData} userData={userData} setToken={setToken} token={token} />
+      <UserNav setUserData={setUserData} userData={userData} setToken={setToken} token={token} setPanel={setPanel} />
       <Container>
-        <LoansDashboard token={token} />
+        {determineDisplayPanel()}
       </Container>
     </div>
   );
