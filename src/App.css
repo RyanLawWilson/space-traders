@@ -1,3 +1,7 @@
+:root {
+    --darker: #1d2024;
+}
+
 .App { 
     background-color: var(--dark);
     position: absolute;
@@ -11,6 +15,14 @@
 /* * {
     color: var(--light);
 } */
+
+/* HELPER CLASSES */
+
+.st_flex-wrap {
+    flex-wrap: wrap;
+}
+
+
 
 .user-nav--container {
     position: fixed;
@@ -137,9 +149,13 @@
 
 .loans-dashboard {
     padding: 10px;
+    background-color: var(--darker);
+    color: white;
 }
 
 .loans-dashboard--loan {
     margin: 3px 5px;
     padding: 8px 13px;
+    max-width: 375px;
+    background-color: rgb(48, 6, 6);
 }

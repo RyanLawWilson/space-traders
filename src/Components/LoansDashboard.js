@@ -39,7 +39,7 @@ const LoansDashboard = ({ token }) => {
     return(
 
 
-        <div className="loans-dashboard bg-danger">
+        <div className="loans-dashboard">
             <h1>Loans Dashboard</h1>
             {availableLoans.map(loan => (
                 <Loan key={loan.type} loan={loan} />
