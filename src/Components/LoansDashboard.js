@@ -1,11 +1,18 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
+import Loan from './Loan';
 
 const LoansDashboard = ({ token }) => {
 
     useEffect(() => {
-        //getAvailableLoans(token);
+        console.log(localStorage.getItem("ST_availableLoans"));
+        if (localStorage.getItem("ST_availableLoans") !== null) {
+            console.log("Found available loans in storage");
+            setAvailableLoans(JSON.parse(localStorage.getItem("ST_availableLoans")));
+        } else {
+            getAvailableLoans(token);
+        }
     }, [token]);
 
 
@@ -22,6 +29,7 @@ const LoansDashboard = ({ token }) => {
             console.log("Success!");
             console.log(response.data.loans);
             setAvailableLoans(response.data.loans);
+            localStorage.setItem("ST_availableLoans", JSON.stringify(response.data.loans));
         }).catch((err) => {
             console.log("Failure");
             console.log(err);
@@ -32,7 +40,10 @@ const LoansDashboard = ({ token }) => {
 
 
         <div className="loans-dashboard bg-danger">
-            <h1>TESTING</h1>
+            <h1>Loans Dashboard</h1>
+            {availableLoans.map(loan => (
+                <Loan key={loan.type} loan={loan} />
+            ))}
         </div>
 
     );
