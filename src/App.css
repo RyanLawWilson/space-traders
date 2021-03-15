@@ -129,12 +129,14 @@
 
 .user-nav--time-since-update {
     position: absolute;
-    left: -25px;
+    left: -45px;
     bottom: 0;
     background-color: inherit;
     border: none;
     cursor: context-menu !important;
     padding: 0;
+    width: 50px;
+    text-align: right;
 }
 
 .user-nav--time-since-update.btn-secondary:not(:disabled):not(.disabled):active,

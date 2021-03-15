@@ -29,7 +29,7 @@ const UserNav = ({ setUserData, userData, setToken, token, setPanel }) => {
                 <strong className="col-12 user-nav--username">{userData.username}</strong>
                 <strong className="col-12 user-nav--money">${userData.credits}</strong>
                 <LogoutButton setUserData={setUserData} setToken={setToken} />
-                <TimeSinceUpdate />
+                <TimeSinceUpdate userData={userData} />
             </div>
         );
     }
