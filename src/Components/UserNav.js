@@ -39,7 +39,7 @@ const UserNav = ({ setUserData, userData, setToken, token, setPanel }) => {
         console.log("Rendering Login button");
         return(
             <>
-                <Register />
+                <Register setToken={setToken} />
                 <CredentialModal setUserData={setUserData} setToken={setToken} />
             </>
         );

@@ -4,22 +4,23 @@ import { useState } from 'react';
 import axios from 'axios';
 
 
-const Register = () => {
+const Register = ({ setToken }) => {
 
     const [show, setShow] = useState(false);
     const [username, setUsername] = useState("");
-
+    const [localToken, setLocalToken] = useState("");
 
     // If the Player was created successfully, display the token in the modal.
-    var playerToken;
-    function displayToken(token) {
-        return(
-            <>
-                <h1>SAVE THIS TOKEN</h1>
-                <label className="d-block text-dark">Username: </label>
-                <p type="text" className="mb-2 d-block w-100 text-dark">{token}</p>
-            </>
-        );
+    function displayToken() {
+        if (localToken !== "") {
+            return(
+                <>
+                    <h1>SAVE THIS TOKEN</h1>
+                    <label className="d-block text-dark">Token: </label>
+                    <p type="text" className="mb-2 d-block w-100 text-dark">{localToken}</p>
+                </>
+            );
+        }
     }
 
 
@@ -33,9 +34,9 @@ const Register = () => {
             //   token: token
             // }
         }).then((response) => {
-            console.log(response.data);
             console.log(response.data.token);
-            playerToken = displayToken(response.data.token);
+            setLocalToken(response.data.token);
+            setToken(response.data.token);
         }).catch((error) => {
             console.log("FAILURE\n" + error);
         });
@@ -52,7 +53,6 @@ const Register = () => {
 
     const handleSubmit = () => {
         getToken(username);
-        setShow(false);
     }
 
     const userNameHandler = (e) => {
@@ -61,7 +61,7 @@ const Register = () => {
 
     return (
         <>
-            <Button variant="primary" onClick={handleShow}>
+            <Button className="mr-2" variant="primary" onClick={handleShow}>
                 Register
             </Button>
 
@@ -78,7 +78,7 @@ const Register = () => {
                 <Modal.Body className="w-75 m-auto">
                     <label className="d-block text-dark">Username: </label>
                     <input type="text" id="username-text" onChange={userNameHandler} value={username} placeholder="Username..." className="mb-2 d-block w-100 text-dark" />
-                    {playerToken}
+                    {displayToken()}
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
