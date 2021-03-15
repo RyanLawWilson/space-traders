@@ -3,6 +3,7 @@ import React from 'react';
 import CredentialModal from './CredentialModal';
 import LogoutButton from './LogoutButton';
 import TimeSinceUpdate from './TimeSinceUpdate';
+import Register from './Register';
 // import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
 
 const UserNav = ({ setUserData, userData, setToken, token, setPanel }) => {
@@ -37,7 +38,10 @@ const UserNav = ({ setUserData, userData, setToken, token, setPanel }) => {
     function LoginButton() {
         console.log("Rendering Login button");
         return(
-            <CredentialModal setUserData={setUserData} setToken={setToken} />
+            <>
+                <Register />
+                <CredentialModal setUserData={setUserData} setToken={setToken} />
+            </>
         );
     }
 
