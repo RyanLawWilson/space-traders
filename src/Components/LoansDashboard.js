@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useEffect } from 'react';
 import Loan from './Loan';
 
-const LoansDashboard = ({ token }) => {
+const LoansDashboard = ({ token, setUserData }) => {
 
     useEffect(() => {
         console.log(localStorage.getItem("ST_availableLoans"));
@@ -42,7 +42,7 @@ const LoansDashboard = ({ token }) => {
         <div className="loans-dashboard">
             <h1>Loans Dashboard</h1>
             {availableLoans.map(loan => (
-                <Loan key={loan.type} loan={loan} />
+                <Loan key={loan.type} loan={loan} setUserData={setUserData} />
             ))}
         </div>
 

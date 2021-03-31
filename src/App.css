@@ -160,4 +160,27 @@
     padding: 8px 13px;
     max-width: 375px;
     background-color: rgb(48, 6, 6);
+    position: relative;
+}
+
+.loan-confirm-btn {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-weight: bold;
+}
+
+@media (max-width: 576px) {
+    .loan-confirm-btn {
+        bottom: 25%;
+        transform: translateY(-50%) rotate(-90deg);
+        padding: 2px 10px;
+        right: -33px;
+    }
+
+    /* This is to make some extra room for the accept button when it moves to the right of the Loan */
+    .loans-dashboard--loan {
+        margin-right: 10px;
+        padding-right: 18px;
+    }
 }

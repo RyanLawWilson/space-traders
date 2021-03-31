@@ -29,7 +29,7 @@ function App() {
   function determineDisplayPanel() {
     switch(panel) {
       case "Loans":
-        return(<LoansDashboard token={token} />);
+        return(<LoansDashboard token={token} setUserData={setUserData} />);
       default:
         return(<div>TEMP</div>); // Show the ships panel by default
     }
