@@ -12,11 +12,11 @@ const CredentialModal = ({ setUserData, setToken }) => {
     const [tokenText, setTokenText] = useState("");
 
     const handleClose = () => {
-        console.log("testing Close");
+        //console.log("testing Close");
         setShow(false);
     }
     const handleShow = () => {
-        console.log("testing Show");
+        //console.log("testing Show");
         setShow(true);
     }
 
