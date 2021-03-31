@@ -4,15 +4,31 @@ import { faClock } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 
-const Loan = ({ loan, setUserData, userData, token }) => {
+const Loan = ({ loan, setUserData, userData, token, loanAlreadyAccepted }) => {
 
-    const [loanAccepted, setLoanAccepted] = useState(false); 
+    /**
+     * Loans have this structure:
+     * 
+     *  [
+     *      {
+     *          "type":"STARTUP",
+     *          "amount":200000,
+     *          "rate":40,
+     *          "termInDays":2,
+     *          "collateralRequired":false,
+     *          "accepted":false
+     *      }
+     *  ]
+     * 
+     * I added the 'accepted' property.  If the user has accepted that loan,
+     * the accept button will be disabled.
+     */
 
     const acceptLoanHandler = () => {
-        if (!loanAccepted)
-            takeOutNewLoan(token);
-        else
+        if (loan.accepted)
             console.log("You already took out this loan");
+        else
+            takeOutNewLoan(token);
     }
 
 
@@ -27,11 +43,10 @@ const Loan = ({ loan, setUserData, userData, token }) => {
         }).then((response) => {
             console.log("Success!");
             console.log(response.data.user);
-            setLoanAccepted(true);
-            console.log("Accepted now set to: " + loanAccepted);
-            //setUserData(response.data);
-            //setAvailableLoans(response.data.loans);
-            //localStorage.setItem("ST_availableLoans", JSON.stringify(response.data.loans));
+            loan.accepted = true;
+            console.log("Accepted now set to: " + loan.accepted);
+            setUserData(response.data);
+            localStorage.setItem("ST_UserData", JSON.stringify(response.data.user));
         }).catch((error) => {
             console.log("Failure");
             let errorCode = error.response.data.error.code;
@@ -47,8 +62,12 @@ const Loan = ({ loan, setUserData, userData, token }) => {
     }
 
 
-
-
+    function enableDisableButton() {
+        if (loan.accepted)
+            return <Button disabled variant="warning" className="loan-confirm-btn" onClick={acceptLoanHandler}>Accepted</Button>
+        else
+            return <Button variant="warning" className="loan-confirm-btn" onClick={acceptLoanHandler}>Accept</Button>
+    }
 
     return(
         <div className="loans-dashboard--loan">
@@ -75,7 +94,7 @@ const Loan = ({ loan, setUserData, userData, token }) => {
                     ${((loan.amount * loan.rate * 0.01) + loan.amount).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                 </h6>
             </div>
-            <Button variant="warning" className="loan-confirm-btn" onClick={acceptLoanHandler}>Accept</Button>
+            {enableDisableButton()}
 
         </div>
 
