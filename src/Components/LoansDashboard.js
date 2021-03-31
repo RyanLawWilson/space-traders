@@ -6,9 +6,9 @@ import Loan from './Loan';
 const LoansDashboard = ({ token, setUserData }) => {
 
     useEffect(() => {
-        console.log(localStorage.getItem("ST_availableLoans"));
         if (localStorage.getItem("ST_availableLoans") !== null) {
-            console.log("Found available loans in storage");
+            console.log("Found available loans in storage:\n");
+            console.log(localStorage.getItem("ST_availableLoans"));
             setAvailableLoans(JSON.parse(localStorage.getItem("ST_availableLoans")));
         } else {
             getAvailableLoans(token);
