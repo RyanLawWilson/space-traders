@@ -7,6 +7,17 @@ import { Container } from 'react-bootstrap';
 function App() {
 
   //const[userCredentials, setUserCredentials] = useState({});
+  /**
+   * User Data JSON structure:
+   * {
+        "user": {
+          "credits": 0,
+          "loans": [],
+          "ships": [],
+          "username": "space-trader"
+        }
+      }
+   */
   const [userData, setUserData] = useState({});
   const [token, setToken] = useState("");
   // A panel is the component being displayed in the main screen area.
