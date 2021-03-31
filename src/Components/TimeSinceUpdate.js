@@ -32,7 +32,7 @@ const TimeSinceUpdate = ({ userData }) => {
     function startStopwatch() {
         setLastUpdatedSince(0);
         let sec = 0;
-        console.log("Stopwatch started");
+        //console.log("Stopwatch started");
         stopwatch = setInterval(() => {
             //setLastUpdatedSince(3 + Math.ceil(Math.random() * 10));
             setLastUpdatedSince(sec++ + 1);
@@ -41,7 +41,7 @@ const TimeSinceUpdate = ({ userData }) => {
 
     function resetStopwatch() {
         clearInterval(stopwatch);
-        console.log("Stopwatch reset");
+        //console.log("Stopwatch reset");
         startStopwatch();
     }
 

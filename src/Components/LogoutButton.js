@@ -11,9 +11,9 @@ const LogoutButton = ({ setUserData, setToken }) => {
     useEffect(() => {
         if (localStorage.getItem("ST_doNotShowLogoutModal") !== null) {
             setDoNotShow(localStorage.getItem("ST_doNotShowLogoutModal"));
-            console.log("DON'T SHOW MODAL!");
+            //console.log("DON'T SHOW MODAL!");
         } else {
-            console.log("Show logout confirmation modal next time");
+            //console.log("Show logout confirmation modal next time");
         }
     }, []);
 
