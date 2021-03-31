@@ -12,8 +12,8 @@ function App() {
    * {
         "user": {
           "credits": 0,
-          "loans": [],
-          "ships": [],
+          "loans": [{}, {}, ...],
+          "ships": [{}, {}, ...],
           "username": "space-trader"
         }
       }
