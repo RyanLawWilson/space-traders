@@ -33,6 +33,7 @@ const Loan = ({ loan, setUserData, userData, token, loanAlreadyAccepted }) => {
 
 
 
+    // Called when the user clicks the Accept button.  Returns a userData object.
     function takeOutNewLoan(token) {
         //console.log(userData.username);
         //console.log(`https://api.spacetraders.io/users/${userData.username}/loans?token=${token}&type=${loan.type}`);
@@ -63,6 +64,7 @@ const Loan = ({ loan, setUserData, userData, token, loanAlreadyAccepted }) => {
 
 
     function enableDisableButton() {
+        console.log("Is the Accept loan button disable? " + loan.accepted);
         if (loan.accepted)
             return <Button disabled variant="warning" className="loan-confirm-btn" onClick={acceptLoanHandler}>Accepted</Button>
         else
