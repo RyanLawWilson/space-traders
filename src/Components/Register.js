@@ -7,7 +7,9 @@ import axios from 'axios';
 const Register = ({ setToken }) => {
 
     const [show, setShow] = useState(false);
+    const [submitButtonText, setSubmitButtonText] = useState("Register");
     const [username, setUsername] = useState("");
+    const [usernameTaken, setUsernameTaken] = useState(false);
     const [localToken, setLocalToken] = useState("");
 
     // If the Player was created successfully, display the token in the modal.
@@ -23,6 +25,17 @@ const Register = ({ setToken }) => {
         }
     }
 
+    function displayUsernameIsTaken() {
+        if (usernameTaken) {
+            return(
+                <p className="text-warning font-weight-bold">That username is taken</p>
+            );
+        } else {
+            return(
+                <></>
+            );
+        }
+    }
 
     function getToken(playerUsername) {
         axios({
@@ -37,8 +50,15 @@ const Register = ({ setToken }) => {
             console.log(response.data.token);
             setLocalToken(response.data.token);
             setToken(response.data.token);
+            setSubmitButtonText("Log In");
+            setUsernameTaken(false);
         }).catch((error) => {
-            console.log("FAILURE\n" + error);
+            let errorCode = error.response.data.error.code;
+            console.log("FAILURE!  Error code: " + errorCode);
+            if (errorCode === 40901) {
+                console.log("That username is unavailable");
+                setUsernameTaken(true);
+            }
         });
     }
 
@@ -78,6 +98,7 @@ const Register = ({ setToken }) => {
                 <Modal.Body className="w-75 m-auto">
                     <label className="d-block text-dark">Username: </label>
                     <input type="text" id="username-text" onChange={userNameHandler} value={username} placeholder="Username..." className="mb-2 d-block w-100 text-dark" />
+                    {displayUsernameIsTaken()}
                     {displayToken()}
                 </Modal.Body>
                 <Modal.Footer>
@@ -85,7 +106,7 @@ const Register = ({ setToken }) => {
                         Cancel
                     </Button>
                     <Button variant="primary" onClick={handleSubmit}>
-                        Register
+                        {submitButtonText}
                     </Button>
                 </Modal.Footer>
             </Modal>
