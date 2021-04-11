@@ -26,11 +26,15 @@ const LoansDashboard = ({ token, setUserData, userData }) => {
 
     useEffect(() => {
         if (localStorage.getItem("ST_availableLoans") !== null) {
-            console.log("Found available loans in storage:\n");
-            console.log(localStorage.getItem("ST_availableLoans"));
+            // console.log("Found available loans in storage:\n");
+            // console.log(localStorage.getItem("ST_availableLoans"));
+
+
             setAvailableLoans(JSON.parse(localStorage.getItem("ST_availableLoans")));
-            console.log("Available Loans is now set:\n");
-            console.log(availableLoans);
+
+            
+            // console.log("Available Loans is now set:\n");
+            // console.log(availableLoans);
         } else {
             getAvailableLoans(token);
         }

@@ -26,12 +26,12 @@ function App() {
 
   useEffect(() => {
     if (localStorage.getItem("ST_UserData") !== null) {
-      console.log("Initial Load: There is data in local storage");
-      var data = JSON.parse(localStorage.getItem("ST_UserData"));
-      setUserData(data);
+      console.log("App.js | User data in local storage found");
+      // Set userData with the data in local storage & set the token.
+      setUserData(JSON.parse(localStorage.getItem("ST_UserData")));
       setToken(localStorage.getItem("ST_token"));
     } else {
-      console.log("Initial Load: There is no data in local storage");
+      console.log("App.js | No user data in local storage");
       //setUserData({});
     }
   }, []);
