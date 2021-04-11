@@ -8,16 +8,13 @@ import Register from './Register';
 
 const UserNav = ({ setUserData, userData, setToken, token, setPanel }) => {
 
-
-
     const panelChangeHandler = (e) => {
+        if (token === "")
+            return;
+
         console.log(e.target);
         setPanel(e.target.textContent);
     }
-
-
-
-
 
 
 
