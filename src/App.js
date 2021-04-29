@@ -3,8 +3,11 @@ import UserNav from './Components/UserNav';
 import { useState, useEffect } from 'react';
 import LoansDashboard from './Components/LoansDashboard';
 import { Container } from 'react-bootstrap';
+import ContactAPI from './tools/SpaceTradersFunctions'
 
 function App() {
+
+  ContactAPI("Hello!");
 
   //const[userCredentials, setUserCredentials] = useState({});
   /**
