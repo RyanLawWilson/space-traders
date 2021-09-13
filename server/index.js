@@ -1,7 +1,7 @@
-const express = require('express');         // A framework for creating routing in the appliation
-const bodyParser = require('body-parser');  // Allows us to send post requests | DEPRECATED
-const mongoose = require('mongoose');       // Used to create models
-const cors = require('cors');               // Enables cross-origin requests
+import express from 'express';         // A framework for creating routing in the appliation
+import bodyParser from 'body-parser';  // Allows us to send post requests | DEPRECATED
+import mongoose from 'mongoose';       // Used to create models
+import cors from 'cors';               // Enables cross-origin requests
 
 // Do 'npm install nodemon' to install nodemon.  Nodemon allows you to make changes to the server while it is running
 // and see the changes in real time.
