@@ -10,7 +10,9 @@ import ContactAPI from './tools/SpaceTradersFunctions';
 
 
 import Form from './Components/Form/Form';
-import Posts from './Components/Posts/Posts'
+import Posts from './Components/Posts/Posts';
+import { useDispatch } from 'react-redux';
+import { getPosts } from './actions/posts';
 
 
 
@@ -39,6 +41,11 @@ function App() {
   // Available panels: Loans, Ships
   const [panel, setPanel] = useState("Ships");
 
+
+
+  const dispatch = useDispatch();
+
+
   useEffect(() => {
     if (localStorage.getItem("ST_UserData") !== null) {
       console.log("App.js | User data in local storage found");
@@ -49,7 +56,19 @@ function App() {
       console.log("App.js | No user data in local storage");
       //setUserData({});
     }
-  }, []);
+
+
+
+
+
+    dispatch(getPosts());
+
+
+
+
+
+
+  }, [dispatch]);
 
   // Show different panels based on what is clicked in the navbar
   function determineDisplayPanel() {
@@ -60,6 +79,18 @@ function App() {
         return(<div>TEMP</div>); // Show the ships panel by default
     }
   }
+
+
+
+
+
+
+
+
+
+
+
+  
 
   return (
     <div className="App">
