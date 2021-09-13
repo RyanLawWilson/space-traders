@@ -3,7 +3,19 @@ import UserNav from './Components/UserNav';
 import { useState, useEffect } from 'react';
 import LoansDashboard from './Components/LoansDashboard';
 import { Container } from 'react-bootstrap';
-import ContactAPI from './tools/SpaceTradersFunctions'
+import ContactAPI from './tools/SpaceTradersFunctions';
+
+
+
+
+
+import Form from './Components/Form/Form';
+import Posts from './Components/Posts/Posts'
+
+
+
+
+
 
 function App() {
 
@@ -51,6 +63,37 @@ function App() {
 
   return (
     <div className="App">
+
+
+      <Form />
+
+      <Posts />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       <UserNav setUserData={setUserData} userData={userData} setToken={setToken} token={token} setPanel={setPanel} />
       <Container>
         {determineDisplayPanel()}
