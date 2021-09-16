@@ -13,7 +13,7 @@ const Posts = ({ setCurrentId }) => {
     console.log("Posts component has been mounted.  Logging posts state from store ▼");
     console.log(posts);
 
-    {/* If posts have no items just show circle icon, otherwise, show the grid of posts */}
+    // If posts have no items just show circle icon, otherwise, show the grid of posts
     return (
         !posts.length ? <CircularProgress /> : (
             <Grid container alignItems="stretch" spacing={3}>

@@ -1,7 +1,7 @@
 import express from 'express';
 
 // The logic for each route is in the controllers folder and those functions get imported here.
-import { getPosts, createPost, updatePost } from '../controllers/posts.js';
+import { getPosts, createPost, updatePost, deletePost } from '../controllers/posts.js';
 
 // Need to initialize a router to start adding backend routes.
 const router = express.Router();
@@ -12,6 +12,7 @@ router.get('/', getPosts);
 router.post('/', createPost);
 // patch is for updating existing documents.  Need an id to specify which document to update
 router.patch('/:id', updatePost);
+router.delete('/:id', deletePost);
 
 // Export the router so that you can add it to the main express app in index.js.
 export default router;
