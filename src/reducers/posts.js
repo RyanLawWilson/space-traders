@@ -2,7 +2,7 @@
 
 // The state must always be equal to something, so set initial value.
 // Since this is the only function being exported from this file, naming the function is not necessary.
-export default (postsState = [], action) => {
+const reducer = (postsState = [], action) => {
     switch (action.type) {
         case "FETCH_ALL":
             return action.payload;
@@ -12,3 +12,5 @@ export default (postsState = [], action) => {
             return postsState;
     }
 };
+
+export default reducer;
