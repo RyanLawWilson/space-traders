@@ -27,16 +27,19 @@ const Form = ({ currentId, setCurrentId }) => {
         } else {
             dispatch(createPost(postData))
         }
+
+        handleClear();
     }
 
     const handleClear = () => {
-
+        setCurrentId(null);
+        setPostData({creator: '', title: '', message: '', tags: '', selectedFile: ''});
     }
 
     return (
         <>
             <form autoComplete='off' noValidate onSubmit={handleSubmit}>
-                <h3>${currentId ? "Editing" : "Creating"} a memory</h3>
+                <h3>{currentId ? "Editing" : "Creating"} a memory</h3>
                 {/* This onChange method is how you change a specific property within on object.  Spread the data first, then specify the property you want to change. */}
                 <input type="text" name="creator" placeholder="creator" value={postData.creator} onChange={(e) => setPostData({ ...postData, creator: e.target.value })} />
                 <input type="text" name="title" placeholder="title" value={postData.title} onChange={(e) => setPostData({ ...postData, title: e.target.value })} />

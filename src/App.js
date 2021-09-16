@@ -69,7 +69,7 @@ function App() {
 
 
 
-  }, [dispatch]);
+  }, [dispatch, currentId]);
 
   // Show different panels based on what is clicked in the navbar
   function determineDisplayPanel() {
