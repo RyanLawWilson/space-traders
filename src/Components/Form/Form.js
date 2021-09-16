@@ -44,7 +44,7 @@ const Form = ({ currentId, setCurrentId }) => {
                 <input type="text" name="creator" placeholder="creator" value={postData.creator} onChange={(e) => setPostData({ ...postData, creator: e.target.value })} />
                 <input type="text" name="title" placeholder="title" value={postData.title} onChange={(e) => setPostData({ ...postData, title: e.target.value })} />
                 <input type="text" name="message" placeholder="message" value={postData.message} onChange={(e) => setPostData({ ...postData, message: e.target.value })} />
-                <input type="text" name="tags" placeholder="tags" value={postData.tags} onChange={(e) => setPostData({ ...postData, tags: e.target.value })} />
+                <input type="text" name="tags" placeholder="tags" value={postData.tags} onChange={(e) => setPostData({ ...postData, tags: e.target.value.split(',') })} />
 
                 <div>
                     <FileBase type="file" multiple={false} onDone={({base64}) => setPostData({...postData, selectedFile: base64})} />
