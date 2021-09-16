@@ -9,7 +9,7 @@ const Posts = () => {
     const posts = useSelector((state) => state.posts);
 
 
-    console.log("Posts component has been mounted.  Logging posts state in store ▼");
+    console.log("Posts component has been mounted.  Logging posts state from store ▼");
     console.log(posts);
 
     return (
