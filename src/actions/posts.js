@@ -64,6 +64,7 @@ export const likePost = (id) => async (dispatch) => {
         console.log(`calling api.likePost...`);
 
         const { data } = await api.likePost(id);
+        console.log(data);
 
         console.log(`Likes have increased by 1!`);
 

@@ -9,9 +9,10 @@ const reducer = (postsState = [], action) => {
         case "CREATE":
             return [...postsState, action.payload];
         case "UPDATE":
-        case "LIKE":
             // Go through each post and find the post that has the same id as the post that was updated on the server.  Replace that post with the updated post.
-            return postsState.map((post) => post._id === action.payload ? action.payload : post);
+            return postsState.map((post) => (post._id === action.payload._id ? action.payload : post));
+        case "LIKE":
+            return postsState.map((post) => (post._id === action.payload._id ? action.payload : post));
         case "DELETE":
             // Show all of the posts that are not equal to the post we just deleted
             return postsState.filter((post) => post._id !== action.payload);

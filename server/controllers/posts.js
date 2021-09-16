@@ -52,13 +52,13 @@ export const deletePost = async (req, res) => {
 }
 
 export const likePost = async (req, res) => {
-    const { id: _id } = req.params;
+    const { id } = req.params;
 
-    if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('No post with that id');
+    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with that id: ${id}`);
 
     // We get the post before updating because we need the current like count of the post.
-    const postBeforeUpdate = await PostMessage.findById(_id);
-    const updatedPost = await PostMessage.findByIdAndUpdate(_id, { likeCount: postBeforeUpdate.likeCount + 1 }, { new: true });
+    const post = await PostMessage.findById(id);
+    const updatedPost = await PostMessage.findByIdAndUpdate(id, { likeCount: post.likeCount + 1 }, { new: true });
 
     res.json(updatedPost);
 }
