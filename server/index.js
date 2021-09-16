@@ -2,6 +2,7 @@ import express from 'express';         // A framework for creating routing in th
 import bodyParser from 'body-parser';  // Allows us to send post requests | DEPRECATED
 import mongoose from 'mongoose';       // Used to create models
 import cors from 'cors';               // Enables cross-origin requests
+import dotenv from 'dotenv';
 
 // Do 'npm install nodemon' to install nodemon.  Nodemon allows you to make changes to the server while it is running
 // and see the changes in real time.
@@ -11,6 +12,7 @@ import cors from 'cors';               // Enables cross-origin requests
 import postRoutes from './routes/posts.js';
 
 const app = express();
+dotenv.config();
 
 // app.use() loads resources, libraries, or middleware functions.
 app.use(express.json({limit: "30mb", extended: true}));
@@ -20,11 +22,9 @@ app.use(cors());
 // This forces every route in postRoutes to start with '/posts'
 app.use('/posts', postRoutes);
 
-// Connection Url received from MongoDB Cloud Atlas.
-const CONNECTION_URL = 'mongodb+srv://testuser:testuser123@cluster0.2meie.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 const PORT = process.env.PORT || 5000;
 
-mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
         app.listen(PORT, () => console.log(`Server running on port: ${PORT}`))
     })
