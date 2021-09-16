@@ -1,6 +1,7 @@
 // All of the handlers for the routes should go here.
 
 // Import the model in the controllers file
+import { Mongoose } from 'mongoose';
 import PostMessage from '../models/postMessage.js';
 
 export const getPosts = async (req, res) => {
@@ -22,8 +23,20 @@ export const createPost = async (req, res) => {
     try {
         await newPost.save();
 
-        res.status(200).json(newPost);
+        res.status(201).json(newPost);
     } catch (error) {
         res.status(409).json({ message: error.message });
     }
+};
+
+export const updatePost = async (req, res) => {
+    const { id: _id } = req.params;
+    const post = req.body;
+
+    if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('No post with that id');
+
+    // Finds and updates the post.  The { new: true } is going to return the newly updated post.
+    const updatedPost = await PostMessage.findByIdAndUpdate(_id, post, { new: true });
+
+    res.json(updatedPost);
 };
