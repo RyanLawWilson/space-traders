@@ -1,4 +1,5 @@
 import React from 'react';
+import { Grid, CircularProgress } from '@material-ui/core';
 import Post from './Post/Post';
 
 // To get state from the global redux store, use selectecrs.
@@ -14,9 +15,7 @@ const Posts = () => {
 
     return (
         <>
-        <h1>Posts</h1>
-        <Post />
-        <Post />
+            
         </>
     )
 }
