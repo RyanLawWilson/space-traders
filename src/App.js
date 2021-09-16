@@ -44,6 +44,7 @@ function App() {
 
 
   const dispatch = useDispatch();
+  const [currentId, setCurrentId] = useState(null);
 
 
   useEffect(() => {
@@ -96,9 +97,9 @@ function App() {
     <div className="App">
 
 
-      <Form />
+      <Form currentId={currentId} setCurrentId={setCurrentId} />
 
-      <Posts />
+      <Posts setCurrentId={setCurrentId} />
 
 
 
