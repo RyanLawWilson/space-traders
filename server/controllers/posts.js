@@ -1,7 +1,7 @@
 // All of the handlers for the routes should go here.
 
 // Import the model in the controllers file
-import { Mongoose } from 'mongoose';
+import mongoose from 'mongoose';
 import PostMessage from '../models/postMessage.js';
 
 export const getPosts = async (req, res) => {

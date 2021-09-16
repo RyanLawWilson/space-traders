@@ -1,16 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import FileBase from 'react-file-base64';
 import { useDispatch } from 'react-redux';
 import { createPost, updatePost } from '../../actions/posts';
+import { useSelector } from 'react-redux';
 
 const Form = ({ currentId, setCurrentId }) => {
 
     const dispatch = useDispatch();
+    // Get only the updated state from the redux store.
+    const post = useSelector((state) => currentId ? state.posts.find((post) => post._id === currentId) : null);
 
     // Create local state for all the information needed to make a post
     const [postData, setPostData] = useState({
         creator: '', title: '', message: '', tags: '', selectedFile: ''
     });
+
+    useEffect(() => {
+        if (post) setPostData(post)
+    }, [post]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -29,7 +36,7 @@ const Form = ({ currentId, setCurrentId }) => {
     return (
         <>
             <form autoComplete='off' noValidate onSubmit={handleSubmit}>
-                <h3>Creating a memory</h3>
+                <h3>${currentId ? "Editing" : "Creating"} a memory</h3>
                 {/* This onChange method is how you change a specific property within on object.  Spread the data first, then specify the property you want to change. */}
                 <input type="text" name="creator" placeholder="creator" value={postData.creator} onChange={(e) => setPostData({ ...postData, creator: e.target.value })} />
                 <input type="text" name="title" placeholder="title" value={postData.title} onChange={(e) => setPostData({ ...postData, title: e.target.value })} />
