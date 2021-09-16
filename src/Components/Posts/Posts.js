@@ -15,7 +15,17 @@ const Posts = () => {
 
     return (
         <>
-            
+            {/* If posts have no items just show circle icon, otherwise, show the grid of posts */}
+            !posts.length ? <CircularProgress /> : (
+                <Grid container alignItems="stretch" spacing={3}>
+                    {/* Note that the ' (post) => () ' part means that anything inside of the parenthesis is going to be returned */}
+                    {posts.map((post) => (
+                        <Grid key={post._id} item xs={12} sm={6}>
+                            <Post post={post}/>
+                        </Grid>
+                    ))}
+                </Grid>
+            )
         </>
     )
 }
