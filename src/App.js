@@ -60,7 +60,7 @@ function App() {
 
 
 
-
+    // This code goes to the posts reducer.
     dispatch(getPosts());
 
 

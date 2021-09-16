@@ -1,8 +1,14 @@
 import * as api from '../api';
 
 // Action Creators are functions that return an action.  An action is just an object which has a type and payload.
-const getPosts = () => async (dispatch) => {
-    const action = { type: "FETCH_ALL", payload: [] };
+export const getPosts = () => async (dispatch) => {
+    // Try to get the data from the api (axios will get or post data from/to DB)
+    // Use try-catch because the call could fail and dispatch the data when its ready.
+    try {
+        const { data } = await api.fetchPosts();
 
-    dispatch(action);
+        dispatch({ type: 'FETCH_ALL', payload: data})
+    } catch (error) {
+        console.log(error.message);
+    }
 }
