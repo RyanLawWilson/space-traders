@@ -13,6 +13,17 @@ export const getPosts = async (req, res) => {
     }
 };
 
-export const createPost = (req, res) => {
-    res.send("Post Creation!");
+export const createPost = async (req, res) => {
+    // The req.body is the content that was sent here by the request, in this case, the post sent by axios.
+    const post = req.body;
+
+    const newPost = new PostMessage(post);
+
+    try {
+        await newPost.save();
+
+        res.status(200).json(newPost);
+    } catch (error) {
+        res.status(409).json({ message: error.message });
+    }
 };
