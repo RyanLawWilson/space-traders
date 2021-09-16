@@ -1,4 +1,5 @@
 import * as api from '../api';
+import { FETCH_ALL, CREATE, UPDATE, DELETE, LIKE} from '../constants/actionTypes';
 
 // Action Creators are functions that return an action.  An action is just an object which has a type and payload.
 export const getPosts = () => async (dispatch) => {
@@ -11,7 +12,7 @@ export const getPosts = () => async (dispatch) => {
 
         console.log(`Data retreived in getPosts action ▼ ${data}`);
 
-        dispatch({ type: 'FETCH_ALL', payload: data})
+        dispatch({ type: FETCH_ALL, payload: data})
     } catch (error) {
         console.log(error.message);
     }
@@ -25,7 +26,7 @@ export const createPost = (post) => async (dispatch) => {
 
         console.log(`Data retreived in getPosts action ▼ ${data}`);
 
-        dispatch({ type: 'CREATE', payload: data })
+        dispatch({ type: CREATE, payload: data })
     } catch (error) {
         console.log(error.message);
     }
@@ -39,7 +40,7 @@ export const updatePost = (id, post) => async (dispatch) => {
 
         console.log(`successfully updated!`);
 
-        dispatch({ type: 'UPDATE', payload: data});
+        dispatch({ type: UPDATE, payload: data});
     } catch (error) {
         console.log(error);
     }
@@ -53,7 +54,7 @@ export const deletePost = (id) => async (dispatch) => {
 
         console.log(`Post is deleted`);
 
-        dispatch({ type: 'DELETE', payload: id })
+        dispatch({ type: DELETE, payload: id })
     } catch (error) {
         console.log(error);
     }
@@ -68,7 +69,7 @@ export const likePost = (id) => async (dispatch) => {
 
         console.log(`Likes have increased by 1!`);
 
-        dispatch({ type: 'LIKE', payload: data});
+        dispatch({ type: LIKE, payload: data});
     } catch (error) {
         console.log(error);
     }
