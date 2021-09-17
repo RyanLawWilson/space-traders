@@ -1,5 +1,5 @@
 # Overview
-This project is a personal project of mine that I'm still building out.  I'm creating a UI for the API game [Space Traders](https://spacetraders.io/).  I'm using Axios to send requests to a Node.js API that I built that is hosted on Heroku.  Data is stored in a MongoDb database.  The frontend is React with Redux and Redux-thunk.  Take a look at the app on [netlify]()
+This project is a personal project of mine that I'm still building out.  I'm creating a UI for the API game [Space Traders](https://spacetraders.io/).  I'm using Axios to send requests to a Node.js API that I built that is hosted on Heroku.  Data is stored in a MongoDb database.  The frontend is React with Redux and Redux-thunk.  Take a look at the app on [netlify](https://ryans-spacetraders-ui.netlify.app/)
 
 Netlify status: [![Netlify Status](https://api.netlify.com/api/v1/badges/0e6999fa-d48f-4c85-a66f-45ded637eb7b/deploy-status)](https://app.netlify.com/sites/ryans-spacetraders-ui/deploys)
 
@@ -12,7 +12,7 @@ These are the current features that are currently implemented in the app.
 
 ## Upcoming Features:
 These are features that will be finished in the near future, starting from 'almost ready' to 'far off'<br />
-![50%](https://progress-bar.dev/50) <span style="padding-bottom: 5px">Buy space ships</span><br />
+![50%](https://progress-bar.dev/50) Buy space ships<br />
 ![50%](https://progress-bar.dev/50) Pay off your loans<br />
 ![25%](https://progress-bar.dev/25) Submit a flight plan<br />
 ![15%](https://progress-bar.dev/15) View information on space ships locations<br />
