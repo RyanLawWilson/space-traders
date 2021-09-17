@@ -97,8 +97,8 @@ function App() {
     <div className="App">
 
 
+      
       <Form currentId={currentId} setCurrentId={setCurrentId} />
-
       <Posts setCurrentId={setCurrentId} />
 
 
