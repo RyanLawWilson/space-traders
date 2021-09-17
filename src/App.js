@@ -9,11 +9,12 @@ import ContactAPI from './tools/SpaceTradersFunctions';
 
 
 
-import Form from './Components/Form/Form';
-import Posts from './Components/Posts/Posts';
+import Navbar from './Components/Navbar/Navbar';
+import Home from './Components/Home/Home';
+import Auth from './Components/Auth/Auth';
 import { useDispatch } from 'react-redux';
 import { getPosts } from './actions/posts';
-
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 
 
@@ -73,11 +74,11 @@ function App() {
 
   // Show different panels based on what is clicked in the navbar
   function determineDisplayPanel() {
-    switch(panel) {
+    switch (panel) {
       case "Loans":
-        return(<LoansDashboard token={token} userData={userData} setUserData={setUserData} />);
+        return (<LoansDashboard token={token} userData={userData} setUserData={setUserData} />);
       default:
-        return(<div>TEMP</div>); // Show the ships panel by default
+        return (<div>TEMP</div>); // Show the ships panel by default
     }
   }
 
@@ -91,21 +92,18 @@ function App() {
 
 
 
-  
+
 
   return (
-    <div className="App">
+    <BrowserRouter>
+      <div className="App">
 
 
-      
-      <Form currentId={currentId} setCurrentId={setCurrentId} />
-      <Posts setCurrentId={setCurrentId} />
-
-
-
-
-
-
+        <Navbar />
+        <Switch>
+          <Route path='/' exact component={Home} />
+          <Route path='/auth' exact component={Auth} />
+        </Switch>
 
 
 
@@ -126,11 +124,18 @@ function App() {
 
 
 
-      <UserNav setUserData={setUserData} userData={userData} setToken={setToken} token={token} setPanel={setPanel} />
-      <Container>
-        {determineDisplayPanel()}
-      </Container>
-    </div>
+
+
+
+
+
+
+        <UserNav setUserData={setUserData} userData={userData} setToken={setToken} token={token} setPanel={setPanel} />
+        <Container>
+          {determineDisplayPanel()}
+        </Container>
+      </div>
+    </BrowserRouter>
   );
 }
 
