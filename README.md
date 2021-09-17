@@ -12,7 +12,7 @@ These are the current features that are currently implemented in the app.
 
 ## Upcoming Features:
 These are features that will be finished in the near future, starting from 'almost ready' to 'far off'<br />
-![50%](https://progress-bar.dev/50) <span style="margin-top: -5px">Buy space ships</span><br />
+![50%](https://progress-bar.dev/50) <span style="padding-bottom: 5px">Buy space ships</span><br />
 ![50%](https://progress-bar.dev/50) Pay off your loans<br />
 ![25%](https://progress-bar.dev/25) Submit a flight plan<br />
 ![15%](https://progress-bar.dev/15) View information on space ships locations<br />
