@@ -42,6 +42,8 @@ const Auth = () => {
                 <Input type='email' name="email" placeholder="email" onChange={handleChange} />
                 <Input type={showPassword ? 'text' : 'password'} name="password" placeholder='password' onChange={handleChange} />
                 { isSignup && <Input type={showPassword ? 'text' : 'password'} name="repeat" placeholder="repeat password" onChange={handleChange} /> }
+
+                {/* Render a button that allows you to log in with a Google account */}
                 <GoogleLogin 
                     clientId="GOOGLE_ID"
                     render={(renderProps) => (
@@ -51,6 +53,8 @@ const Auth = () => {
                     onFailure={googleFailure}
                     cookiePolicy='single_host_origin'
                 />
+
+
                 <button type='submit'>{ isSignup ? 'sign up' : 'sign in'}</button>
 
                 <button type='button' onClick={switchMode}>{isSignup ? 'Already have an account? Sign in' : 'Don\'t have an account? Sign up'}</button>
