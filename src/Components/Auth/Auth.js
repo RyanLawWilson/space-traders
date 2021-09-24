@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import Input from './Input';
 import GoogleLogin from 'react-google-login';
 
+// URL for Auth tutorial: https://www.youtube.com/watch?v=LKlO8vLvUao&ab_channel=JavaScriptMastery
+
 const Auth = () => {
     const [isSignup, setIsSignup] = useState(true);
     const [showPassword, setShowPassword] = useState(false);
