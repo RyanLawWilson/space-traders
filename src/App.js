@@ -3,8 +3,7 @@ import UserNav from './Components/UserNav';
 import { useState, useEffect } from 'react';
 import LoansDashboard from './Components/LoansDashboard';
 import { Container } from 'react-bootstrap';
-import ContactAPI from './tools/SpaceTradersFunctions';
-
+import * as api from './tools/SpaceTradersFunctions';
 
 
 
@@ -22,7 +21,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 function App() {
 
-  ContactAPI("Hello!");
+  api.ContactAPI("Hello!");
 
   //const[userCredentials, setUserCredentials] = useState({});
   /**
@@ -92,7 +91,21 @@ function App() {
 
 
 
+  const testAPIHandler = async () => {
+    let userInfo = await api.createAccount(`apple_sauce${Math.floor(Math.random() * 10000)}`);
+    console.log(userInfo.data);
+    // "67f8f83b-752c-4e6f-8596-4ce9ff708329"
+  }
 
+  const test2 = async () => {
+      let loans = await api.getAvailableLoans("67f8f83b-752c-4e6f-8596-4ce9ff708329");
+      console.log(loans.data.loans[0]);
+  }
+
+  const takeOut = async () => {
+    let result = await api.takeOutLoan("67f8f83b-752c-4e6f-8596-4ce9ff708329", "STARTUP");
+    console.log(result.data);
+  }
 
   return (
     <BrowserRouter>
@@ -106,8 +119,9 @@ function App() {
         </Switch>
 
 
-
-
+        <button onClick={testAPIHandler}>Create Me</button>
+        <button onClick={test2}>Get loans</button>
+        <button onClick={takeOut}>Take out loan</button>
 
 
 
