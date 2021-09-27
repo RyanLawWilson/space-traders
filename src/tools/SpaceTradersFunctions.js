@@ -13,7 +13,6 @@ import axios from 'axios';
 */
 
 
-
 //...........................................................................
 //.....╬╬╬╬╬...........................................................╬╬╬...
 //.....╬╬╬╬╬..........................................................╬╬╬╬...
@@ -97,6 +96,12 @@ export const getAccountInfo = (token) => axios.get('https://api.spacetraders.io/
 //.....................................................
 
 
+export const isGameAlive = () => axios.get('https://api.spacetraders.io/game/status');
+/* Success Response:
+{
+    "status": "spacetraders is currently online and available to play"
+}
+*/
 
 
 //...............................................................................................................
@@ -135,6 +140,51 @@ export const getAccountInfo = (token) => axios.get('https://api.spacetraders.io/
 //.......................................................
 
 
+export const getCurrentLoans = (token) => axios.put('https://api.spacetraders.io/my/loans/', { headers: { 'Authorization': token } });
+/* Success Response:
+{
+    "loans": [
+        {
+            "due": "2021-05-15T02:32:43.269Z",
+            "id": "ckoma153c0060zbnzquw2xa29",
+            "repaymentAmount": 280000,
+            "status": "CURRENT",
+            "type": "STARTUP"
+        }
+    ]
+}
+*/
+
+export const payOffLoan = (token, loanId) => axios.put('https://api.spacetraders.io/my/loans/', { headers: { 'Authorization': token }, params: { loanId: loanId } });
+/* Success Response:
+{
+    "credits": 0,
+    "loans": [
+        {
+            "due": "2021-05-15T02:32:43.269Z",
+            "id": "ckoma153c0060zbnzquw2xa29",
+            "repaymentAmount": 280000,
+            "status": "PAID",
+            "type": "STARTUP"
+        }
+    ]
+}
+*/
+
+export const takeOutLoan = (token, type) => axios.post('https://api.spacetraders.io/my/loans', { headers: { 'Authorization': token }, params: { type: type } });
+/* Success Response:
+{
+    "credits": 200000,
+    "loan": {
+        "due": "2021-05-15T02:32:43.269Z",
+        "id": "ckoma153c0060zbnzquw2xa29",
+        "repaymentAmount": 280000,
+        "status": "CURRENT",
+        "type": "STARTUP"
+    }
+}
+*/
+
 
 //.......................................................................................
 //.╬╬╬╬.......................................╬╬╬..╬╬╬╬..................................
@@ -152,6 +202,65 @@ export const getAccountInfo = (token) => axios.get('https://api.spacetraders.io/
 //.╬╬╬╬╬╬╬╬╬╬...╬╬╬╬╬╬....╬╬╬╬╬╬...╬╬╬╬╬╬╬╬╬.╬╬╬╬╬╬╬╬╬╬...╬╬╬╬╬╬...╬╬╬╬..╬╬╬╬..╬╬╬╬╬╬....
 //.......................................................................................
 
+
+export const getInfoOnLocation = (token, locationSymbol) => axios.get('https://api.spacetraders.io/locations', { headers: { 'Authorization': token }, params: { locationSymbol: locationSymbol } });
+/* Success Response:
+{
+  "location": {
+    "allowsConstruction": false,
+    "dockedShips": 1,
+    "name": "Planet II",
+    "symbol": "PL-II,
+    "type": "PLANET",
+    "x": 4,
+    "y": -12
+  }
+}
+*/
+
+export const getInfoOnLocationMarketplace = (token, locationSymbol) => axios.get('https://api.spacetraders.io/locations', { headers: { 'Authorization': token }, params: { locationSymbol: locationSymbol } });
+/* Success Response:
+{
+    "marketplace": [
+        {
+            "pricePerUnit": 150,
+            "purchasePricePerUnit": 153,
+            "quantityAvailable": 11860,
+            "sellPricePerUnit": 147,
+            "spread": 3,
+            "symbol": "BIOMETRIC_FIREARMS",
+            "volumePerUnit": 1
+        },
+        {
+            "pricePerUnit": 35,
+            "purchasePricePerUnit": 36,
+            "quantityAvailable": 27120,
+            "sellPricePerUnit": 34,
+            "spread": 1,
+            "symbol": "DRONES",
+            "volumePerUnit": 1
+        }
+    ]
+}
+*/
+
+export const getListOfShipsAtLocation = (token, locationSymbol) => axios.get('https://api.spacetraders.io/locations/:locationSymbol/ships', { headers: { 'Authorization': token }, params: { locationSymbol: locationSymbol } });
+/* Success Response:
+{
+    "ships": [
+        {
+            "shipId": "ckomaazzi00236jnz9d4088kf",
+            "shipType": "JW-MK-I",
+            "username": "testuser0"
+        },
+        {
+            "shipId": "ckon84fo20196vinzktdlvdlv",
+            "shipType": "JW-MK-I",
+            "username": "testuser1"
+        }
+    ]
+}
+*/
 
 
 //...................................................................................................................................................
@@ -230,25 +339,25 @@ export const getAccountInfo = (token) => axios.get('https://api.spacetraders.io/
 
 
 
-//...................................................................
-//...╬╬╬╬╬╬╬.........................╬╬╬.............................
-//..╬╬╬╬╬╬╬╬╬.......................╬╬╬╬.............................
-//..╬╬╬╬╬╬╬╬╬╬......................╬╬╬╬.............................
-//.╬╬╬╬╬..╬╬╬╬╬╬╬╬...╬╬╬╬.╬╬╬╬╬╬╬.╬╬╬╬╬╬╬╬.╬╬╬╬╬╬..╬╬╬╬╬╬╬╬╬╬╬╬╬╬....
-//.╬╬╬╬╬.......╬╬╬╬..╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬.╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬...
-//..╬╬╬╬╬╬╬....╬╬╬╬..╬╬╬╬╬╬╬╬.╬╬╬╬..╬╬╬╬.╬╬╬╬.╬╬╬╬.╬╬╬╬╬.╬╬╬╬╬╬╬╬╬...
-//...╬╬╬╬╬╬╬╬╬.╬╬╬╬.╬╬╬╬.╬╬╬╬╬......╬╬╬╬.╬╬╬╬..╬╬╬╬╬╬╬╬..╬╬╬╬..╬╬╬╬..
-//.....╬╬╬╬╬╬╬..╬╬╬╬╬╬╬╬..╬╬╬╬╬╬....╬╬╬╬.╬╬╬╬╬╬╬╬╬╬╬╬╬╬..╬╬╬╬..╬╬╬╬..
-//........╬╬╬╬╬.╬╬╬╬╬╬╬....╬╬╬╬╬╬╬..╬╬╬╬.╬╬╬╬╬╬╬╬╬╬╬╬╬╬..╬╬╬╬..╬╬╬╬..
-//.╬╬╬╬....╬╬╬╬..╬╬╬╬╬╬........╬╬╬╬.╬╬╬╬.╬╬╬╬......╬╬╬╬..╬╬╬╬..╬╬╬╬..
-//.╬╬╬╬╬╬╬╬╬╬╬╬..╬╬╬╬╬╬..╬╬╬╬..╬╬╬╬.╬╬╬╬.╬╬╬╬..╬╬╬╬╬╬╬╬..╬╬╬╬..╬╬╬╬..
-//..╬╬╬╬╬╬╬╬╬╬...╬╬╬╬╬...╬╬╬╬╬╬╬╬╬..╬╬╬╬╬╬╬╬╬╬╬╬╬╬.╬╬╬╬..╬╬╬╬..╬╬╬╬..
-//...╬╬╬╬╬╬╬╬.....╬╬╬╬.....╬╬╬╬╬╬...╬╬╬╬╬╬.╬╬╬╬╬╬..╬╬╬╬..╬╬╬╬..╬╬╬╬..
-//................╬╬╬╬...............................................
-//...............╬╬╬╬................................................
-//.............╬╬╬╬╬╬................................................
-//.............╬╬╬╬╬.................................................
-//...................................................................
+//.............................................................................
+//...╬╬╬╬╬╬╬.........................╬╬╬.......................................
+//..╬╬╬╬╬╬╬╬╬.......................╬╬╬╬.......................................
+//..╬╬╬╬╬╬╬╬╬╬......................╬╬╬╬.......................................
+//.╬╬╬╬╬..╬╬╬╬╬╬╬╬...╬╬╬╬.╬╬╬╬╬╬╬.╬╬╬╬╬╬╬╬.╬╬╬╬╬╬..╬╬╬╬╬╬╬╬╬╬╬╬╬╬...╬╬╬╬╬╬╬....
+//.╬╬╬╬╬.......╬╬╬╬..╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬.╬╬╬╬╬╬╬╬╬╬╬╬╬╬╬.╬╬╬╬╬╬╬╬╬...
+//..╬╬╬╬╬╬╬....╬╬╬╬..╬╬╬╬╬╬╬╬.╬╬╬╬..╬╬╬╬.╬╬╬╬.╬╬╬╬.╬╬╬╬╬.╬╬╬╬╬╬╬╬╬.╬╬╬╬.╬╬╬╬...
+//...╬╬╬╬╬╬╬╬╬.╬╬╬╬.╬╬╬╬.╬╬╬╬╬......╬╬╬╬.╬╬╬╬..╬╬╬╬╬╬╬╬..╬╬╬╬..╬╬╬╬╬╬╬╬╬.......
+//.....╬╬╬╬╬╬╬..╬╬╬╬╬╬╬╬..╬╬╬╬╬╬....╬╬╬╬.╬╬╬╬╬╬╬╬╬╬╬╬╬╬..╬╬╬╬..╬╬╬╬.╬╬╬╬╬╬.....
+//........╬╬╬╬╬.╬╬╬╬╬╬╬....╬╬╬╬╬╬╬..╬╬╬╬.╬╬╬╬╬╬╬╬╬╬╬╬╬╬..╬╬╬╬..╬╬╬╬..╬╬╬╬╬╬╬...
+//.╬╬╬╬....╬╬╬╬..╬╬╬╬╬╬........╬╬╬╬.╬╬╬╬.╬╬╬╬......╬╬╬╬..╬╬╬╬..╬╬╬╬......╬╬╬╬..
+//.╬╬╬╬╬╬╬╬╬╬╬╬..╬╬╬╬╬╬..╬╬╬╬..╬╬╬╬.╬╬╬╬.╬╬╬╬..╬╬╬╬╬╬╬╬..╬╬╬╬..╬╬╬╬╬╬╬╬..╬╬╬╬..
+//..╬╬╬╬╬╬╬╬╬╬...╬╬╬╬╬...╬╬╬╬╬╬╬╬╬..╬╬╬╬╬╬╬╬╬╬╬╬╬╬.╬╬╬╬..╬╬╬╬..╬╬╬╬╬╬╬╬╬╬╬╬╬...
+//...╬╬╬╬╬╬╬╬.....╬╬╬╬.....╬╬╬╬╬╬...╬╬╬╬╬╬.╬╬╬╬╬╬..╬╬╬╬..╬╬╬╬..╬╬╬╬..╬╬╬╬╬╬....
+//................╬╬╬╬.........................................................
+//...............╬╬╬╬..........................................................
+//.............╬╬╬╬╬╬..........................................................
+//.............╬╬╬╬╬...........................................................
+//.............................................................................
 
 
 //....................................................
@@ -275,14 +384,10 @@ export const getAccountInfo = (token) => axios.get('https://api.spacetraders.io/
 
 /**
  * Get a list of all available loans to take out
- * @param {string} token - The current player's token 
+ * @param {string} token - The current player's token
  * @returns Object that contains {loans} array.  The array contains objects that represent an individual loan that can be taken out.
  */
-export const getAvailableLoans = (token) => axios.get('https://api.spacetraders.io/types/loans',
-    {
-        headers: { 'Authorization': token }
-    }
-);
+export const getAvailableLoans = (token) => axios.get('https://api.spacetraders.io/types/loans', { headers: { 'Authorization': token } });
 /* Success Response:
 {
     "loans": [
@@ -296,6 +401,30 @@ export const getAvailableLoans = (token) => axios.get('https://api.spacetraders.
     ]
 }
 */
+
+export const getAvailableGoods = (token) => axios.get('https://api.spacetraders.io/types/goods', { headers: { 'Authorization': token } })
+/* Success Response:
+{
+    "goods": [
+        {
+            "name": "Fuel",
+            "symbol": "FUEL",
+            "volumePerUnit": 1
+        },
+        {
+            "name": "Chemicals",
+            "symbol": "CHEMICALS",
+            "volumePerUnit": 1
+        },
+        {
+            "name": "Metals",
+            "symbol": "METALS",
+            "volumePerUnit": 1
+        }
+    ]
+}
+*/
+
 
 //....................................................
 //.╬╬╬╬...╬╬╬╬........................................
