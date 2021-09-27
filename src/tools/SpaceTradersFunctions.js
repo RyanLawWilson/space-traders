@@ -12,6 +12,9 @@ import axios from 'axios';
 }
 */
 
+const a = 0;
+export default a;
+
 
 //...........................................................................
 //.....╬╬╬╬╬...........................................................╬╬╬...
@@ -155,7 +158,7 @@ export const getCurrentLoans = (token) => axios.put('https://api.spacetraders.io
 }
 */
 
-export const payOffLoan = (token, loanId) => axios.put('https://api.spacetraders.io/my/loans/', { headers: { 'Authorization': token }, params: { loanId: loanId } });
+export const payOffLoan = (token, loanId) => axios.put('https://api.spacetraders.io/my/loans?', { headers: { 'Authorization': token }, params: { loanId: loanId } });
 /* Success Response:
 {
     "credits": 0,
@@ -171,7 +174,7 @@ export const payOffLoan = (token, loanId) => axios.put('https://api.spacetraders
 }
 */
 
-export const takeOutLoan = (token, type) => axios.post('https://api.spacetraders.io/my/loans', { headers: { 'Authorization': token }, params: { type: type } });
+export const takeOutLoan = (token, type) => axios.post(`https://api.spacetraders.io/my/loans?token=${token}&type=${type}`);
 /* Success Response:
 {
     "credits": 200000,
@@ -203,7 +206,7 @@ export const takeOutLoan = (token, type) => axios.post('https://api.spacetraders
 //.......................................................................................
 
 
-export const getInfoOnLocation = (token, locationSymbol) => axios.get('https://api.spacetraders.io/locations', { headers: { 'Authorization': token }, params: { locationSymbol: locationSymbol } });
+export const getInfoOnLocation = (token, locationSymbol) => axios.get(`https://api.spacetraders.io/locations/${locationSymbol}?token=${token}`);
 /* Success Response:
 {
   "location": {
@@ -218,7 +221,7 @@ export const getInfoOnLocation = (token, locationSymbol) => axios.get('https://a
 }
 */
 
-export const getInfoOnLocationMarketplace = (token, locationSymbol) => axios.get('https://api.spacetraders.io/locations', { headers: { 'Authorization': token }, params: { locationSymbol: locationSymbol } });
+export const getInfoOnLocationMarketplace = (token, locationSymbol) => axios.get(`https://api.spacetraders.io/locations/${locationSymbol}/marketplace?token=${token}`);
 /* Success Response:
 {
     "marketplace": [
@@ -244,7 +247,7 @@ export const getInfoOnLocationMarketplace = (token, locationSymbol) => axios.get
 }
 */
 
-export const getListOfShipsAtLocation = (token, locationSymbol) => axios.get('https://api.spacetraders.io/locations/:locationSymbol/ships', { headers: { 'Authorization': token }, params: { locationSymbol: locationSymbol } });
+export const getListOfShipsAtLocation = (token, locationSymbol) => axios.get(`https://api.spacetraders.io/locations/${locationSymbol}/ships?token=${token}`);
 /* Success Response:
 {
     "ships": [
@@ -280,6 +283,39 @@ export const getListOfShipsAtLocation = (token, locationSymbol) => axios.get('ht
 //...................................................................................................................................................
 
 
+export const createPurchaseOrder = (token, shipId, good, quantity) => axios.post(`https://api.spacetraders.io/my/purchase-orders?token=${token}`, { params: { shipId, good, quantity } });
+/* Success Response:
+{
+    "credits": 157675,
+    "order": {
+        "good": "FUEL",
+        "pricePerUnit": 3,
+        "quantity": 5,
+        "total": 15
+    },
+    "ship": {
+        "cargo": [
+            {
+                "good": "FUEL",
+                "quantity": 23,
+                "totalVolume": 23
+            }
+        ],
+        "class": "MK-I",
+        "id": "ckon84fo20196vinzktdlvdlv",
+        "location": "OE-PM-TR",
+        "manufacturer": "Jackshaw",
+        "maxCargo": 50,
+        "plating": 5,
+        "spaceAvailable": 27,
+        "speed": 1,
+        "type": "JW-MK-I",
+        "weapons": 5,
+        "x": 21,
+        "y": -24
+    }
+}
+*/
 
 //...............................................................................................·...
 //...╬╬╬╬╬╬╬..............╬╬╬╬.╬╬╬╬........╬╬╬╬╬╬╬..................╬╬╬╬.............................
@@ -297,6 +333,40 @@ export const getListOfShipsAtLocation = (token, locationSymbol) => axios.get('ht
 //...╬╬╬╬╬╬╬╬....╬╬╬╬╬╬...╬╬╬╬.╬╬╬╬.........╬╬╬╬╬╬....╬╬╬╬.....╬╬╬╬╬╬╬╬╬..╬╬╬╬╬╬..╬╬╬╬.....╬╬╬╬╬╬....
 //...................................................................................................
 
+
+export const createSellOrder = (token, shipId, good, quantity) => axios.post(`https://api.spacetraders.io/my/sell-orders?token=${token}`, { params: { shipId, good, quantity } });
+/* Success Response:
+{
+    "credits": 157680,
+    "order": {
+        "good": "FUEL",
+        "pricePerUnit": 1,
+        "quantity": 5,
+        "total": 5
+    },
+    "ship": {
+        "cargo": [
+            {
+                "good": "FUEL",
+                "quantity": 18,
+                "totalVolume": 18
+            }
+        ],
+        "class": "MK-I",
+        "id": "ckon84fo20196vinzktdlvdlv",
+        "location": "OE-PM-TR",
+        "manufacturer": "Jackshaw",
+        "maxCargo": 50,
+        "plating": 5,
+        "spaceAvailable": 32,
+        "speed": 1,
+        "type": "JW-MK-I",
+        "weapons": 5,
+        "x": 21,
+        "y": -24
+    }
+}
+*/
 
 
 //....................................................
@@ -319,6 +389,48 @@ export const getListOfShipsAtLocation = (token, locationSymbol) => axios.get('ht
 //.............................╬╬╬╬...................
 //....................................................
 
+
+export const transferGoodsBetweenShips = (token, fromShipId, toShipId, good, quantity) => axios.post(`https://api.spacetraders.io/my/ships/${fromShipId}/transfer?token=${token}`, { params: { toShipId, good, quantity } });
+/* Success Response:
+{
+    "fromShip": {
+        "id": "ckn85whu00091r5opkrb5qpzh",
+        "cargo": [
+            {
+                "good": "FUEL",
+                "quantity": 18,
+                "totalVolume": 18
+            }
+        ],
+        "spaceAvailable": 32,
+        "type": "JW-MK-I",
+        "class": "MK-I",
+        "maxCargo": 50,
+        "speed": 1,
+        "manufacturer": "Jackshaw",
+        "plating": 5,
+        "weapons": 5
+    },
+    "toShip": {
+        "id": "ckn85wijo0137r5opxjqxyxmp",
+        "cargo": [
+            {
+                "good": "FUEL",
+                "quantity": 2,
+                "totalVolume": 2
+            }
+        ],
+        "spaceAvailable": 48,
+        "type": "JW-MK-I",
+        "class": "MK-I",
+        "maxCargo": 50,
+        "speed": 1,
+        "manufacturer": "Jackshaw",
+        "plating": 5,
+        "weapons": 5
+    }
+}
+*/
 
 
 //.............................................................................................
@@ -387,7 +499,7 @@ export const getListOfShipsAtLocation = (token, locationSymbol) => axios.get('ht
  * @param {string} token - The current player's token
  * @returns Object that contains {loans} array.  The array contains objects that represent an individual loan that can be taken out.
  */
-export const getAvailableLoans = (token) => axios.get('https://api.spacetraders.io/types/loans', { headers: { 'Authorization': token } });
+export const getAvailableLoans = (token) => axios.get(`https://api.spacetraders.io/types/loans?token=${token}`);
 /* Success Response:
 {
     "loans": [
@@ -402,7 +514,7 @@ export const getAvailableLoans = (token) => axios.get('https://api.spacetraders.
 }
 */
 
-export const getAvailableGoods = (token) => axios.get('https://api.spacetraders.io/types/goods', { headers: { 'Authorization': token } })
+export const getAvailableGoods = (token) => axios.get(`https://api.spacetraders.io/types/goods?token=${token}`)
 /* Success Response:
 {
     "goods": [
