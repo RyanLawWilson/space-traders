@@ -442,7 +442,6 @@ export const getAvailableGoods = (token) => axios.get('https://api.spacetraders.
 //...╬╬╬╬╬╬╬.....╬╬╬╬╬╬....╬╬╬╬╬╬..╬╬╬╬.....╬╬╬╬╬╬....
 //....................................................
 
-// Claim a username and get a token
 
 /**
  * Claim a username for the current player and return that player's token if successful.
@@ -461,14 +460,6 @@ export const createAccount = (username) => axios.post(`https://api.spacetraders.
     }
 }
 */
-
-
-
-
-
-
-
-
 
 
 //....................................................................................................
@@ -490,26 +481,6 @@ export const createAccount = (username) => axios.post(`https://api.spacetraders.
 //...................................╬╬╬╬.................................................╬╬╬╬........
 //...................................╬╬╬╬.................................................╬╬╬╬........
 //....................................................................................................
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
