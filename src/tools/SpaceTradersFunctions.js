@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from 'axios'; const a = 0; export default a;
 
 // https://api.spacetraders.io/          API
 // https://codepen.io/sakri/pen/Iklgx    Large Comment Generator. Change line 217 to '╬' (alt 206).  Change line 164 to change white space character.
@@ -11,9 +11,6 @@ import axios from 'axios';
     }
 }
 */
-
-const a = 0;
-export default a;
 
 
 //...........................................................................
@@ -316,6 +313,7 @@ export const createPurchaseOrder = (token, shipId, good, quantity) => axios.post
     }
 }
 */
+
 
 //...............................................................................................·...
 //...╬╬╬╬╬╬╬..............╬╬╬╬.╬╬╬╬........╬╬╬╬╬╬╬..................╬╬╬╬.............................
