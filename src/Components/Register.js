@@ -2,6 +2,7 @@ import React from 'react'
 import { Button, Modal } from 'react-bootstrap';
 import { useState } from 'react';
 import axios from 'axios';
+import * as stApi from '../tools/SpaceTradersFunctions';
 
 
 const Register = ({ setToken }) => {
@@ -37,29 +38,46 @@ const Register = ({ setToken }) => {
         }
     }
 
-    function getToken(playerUsername) {
-        axios({
-            method: 'post',
-            url: `https://api.spacetraders.io/users/${playerUsername}/token`,
-            responseType: 'json',
-            // auth: {
-            //   username: playerUsername,
-            //   token: token
-            // }
-        }).then((response) => {
-            console.log(response.data.token);
-            setLocalToken(response.data.token);
-            setToken(response.data.token);
+    const createAccount = async (playerUsername) => {
+        // axios({
+        //     method: 'post',
+        //     url: `https://api.spacetraders.io/users/${playerUsername}/token`,
+        //     responseType: 'json',
+        //     // auth: {
+        //     //   username: playerUsername,
+        //     //   token: token
+        //     // }
+        // }).then((response) => {
+        //     console.log(response.data.token);
+        //     setLocalToken(response.data.token);
+        //     setToken(response.data.token);
+        //     setSubmitButtonText("Log In");
+        //     setUsernameTaken(false);
+        // }).catch((error) => {
+        //     let errorCode = error.response.data.error.code;
+        //     console.log("FAILURE!  Error code: " + errorCode);
+        //     if (errorCode === 40901) {
+        //         console.log("That username is unavailable");
+        //         setUsernameTaken(true);
+        //     }
+        // });
+
+        try {
+            let { data } = await stApi.createAccount(playerUsername).response;
+
+            console.log(data.token);
+            setLocalToken(data.token);
+            setToken(data.token);
             setSubmitButtonText("Log In");
             setUsernameTaken(false);
-        }).catch((error) => {
+        } catch (error) {
             let errorCode = error.response.data.error.code;
             console.log("FAILURE!  Error code: " + errorCode);
             if (errorCode === 40901) {
                 console.log("That username is unavailable");
                 setUsernameTaken(true);
             }
-        });
+        }
     }
 
 
@@ -72,7 +90,7 @@ const Register = ({ setToken }) => {
     }
 
     const handleSubmit = () => {
-        getToken(username);
+        createAccount(username);
     }
 
     const userNameHandler = (e) => {
