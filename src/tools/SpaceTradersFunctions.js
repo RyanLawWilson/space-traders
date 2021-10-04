@@ -1205,7 +1205,7 @@ export const getAvailableStructures = (token) => axios.get(`https://api.spacetra
 }
 */
 
-export const getAvailableShip = (token) => axios.get(`https://api.spacetraders.io/types/ships?token=${token}`);
+export const getAvailableShips = (token) => axios.get(`https://api.spacetraders.io/types/ships?token=${token}`);
 /* Success Response
 {
     "ships": [
